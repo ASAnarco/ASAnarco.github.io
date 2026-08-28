@@ -1,476 +1,1952 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Germany Salary Calculator 2026 | Gross to Net</title>
-  <meta name="description" content="Calculate your estimated net salary in Germany. Enter your gross salary, tax class and other details to estimate your monthly take-home pay.">
+<title>GermanySalary — Germany Net Salary Calculator 2026</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<meta name="description"
+content="Free Germany salary calculator for 2026. Calculate estimated German net salary using the BMF 2026 wage-tax calculation.">
 
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f5f7fb;
-      color: #172033;
-      line-height: 1.6;
-    }
+<style>
 
-    header {
-      background: #111827;
-      color: white;
-      padding: 22px 20px;
-    }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-    .nav {
-      max-width: 1050px;
-      margin: auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+:root {
+    --blue: #2563eb;
+    --blue-dark: #1d4ed8;
+    --green: #059669;
+    --red: #dc2626;
+    --dark: #111827;
+    --text: #172033;
+    --muted: #64748b;
+    --bg: #f3f6fa;
+    --card: #ffffff;
+    --border: #e2e8f0;
+}
 
-    .logo {
-      font-size: 22px;
-      font-weight: 800;
-    }
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
 
-    .year {
-      font-size: 14px;
-      opacity: 0.75;
+/* HEADER */
+
+header {
+    background: var(--dark);
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav {
+    max-width: 1100px;
+    margin: auto;
+    min-height: 68px;
+    padding: 0 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    color: white;
+    text-decoration: none;
+    font-size: 23px;
+    font-weight: 800;
+}
+
+.logo span {
+    color: #60a5fa;
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links a {
+    color: #dbeafe;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.nav-links a:hover {
+    color: white;
+}
+
+/* HERO */
+
+.hero {
+    max-width: 900px;
+    margin: 60px auto 35px;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.badge {
+    display: inline-block;
+    background: #dbeafe;
+    color: #1d4ed8;
+    padding: 7px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 18px;
+}
+
+.hero h1 {
+    font-size: 46px;
+    line-height: 1.1;
+    margin-bottom: 18px;
+}
+
+.hero p {
+    color: var(--muted);
+    font-size: 18px;
+    max-width: 720px;
+    margin: auto;
+}
+
+/* ADS */
+
+.ad {
+    max-width: 900px;
+    margin: 25px auto;
+    padding: 0 20px;
+}
+
+.ad-box {
+    min-height: 90px;
+
+    border: 1px dashed #cbd5e1;
+    border-radius: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #94a3b8;
+    font-size: 12px;
+}
+
+/* MAIN */
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 0 20px;
+}
+
+.card {
+    background: white;
+    border-radius: 20px;
+    padding: 35px;
+
+    box-shadow:
+        0 10px 35px rgba(15,23,42,.08);
+}
+
+.card h2 {
+    font-size: 27px;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+/* FORM */
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 19px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+}
+
+.field label {
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 7px;
+}
+
+input,
+select {
+    width: 100%;
+
+    padding: 13px;
+
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+
+    background: white;
+    color: var(--text);
+
+    font-size: 16px;
+}
+
+input:focus,
+select:focus {
+    outline: 2px solid var(--blue);
+    border-color: transparent;
+}
+
+.full {
+    grid-column: 1 / -1;
+}
+
+.calculate {
+    width: 100%;
+
+    border: none;
+    border-radius: 11px;
+
+    background: var(--blue);
+    color: white;
+
+    padding: 16px;
+    margin-top: 25px;
+
+    font-size: 17px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.calculate:hover {
+    background: var(--blue-dark);
+}
+
+/* RESULT */
+
+.result {
+    display: none;
+
+    margin-top: 30px;
+
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+
+    padding: 27px;
+}
+
+.result-title {
+    text-align: center;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.net {
+    text-align: center;
+
+    font-size: 46px;
+    font-weight: 800;
+
+    color: var(--green);
+
+    margin: 3px 0;
+}
+
+.yearly {
+    text-align: center;
+    color: var(--muted);
+}
+
+.breakdown {
+    margin-top: 25px;
+}
+
+.breakdown h3 {
+    margin-bottom: 10px;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+
+    padding: 10px 0;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.row:last-child {
+    border-bottom: none;
+}
+
+.red {
+    color: var(--red);
+}
+
+.total {
+    font-weight: bold;
+    padding-top: 16px;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 12px;
+
+    margin-top: 25px;
+}
+
+.stat {
+    background: white;
+
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    padding: 15px;
+
+    text-align: center;
+}
+
+.stat strong {
+    display: block;
+    font-size: 19px;
+}
+
+.stat span {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.notice {
+    margin-top: 20px;
+
+    padding: 14px;
+
+    background: #eff6ff;
+    border-radius: 10px;
+
+    color: #475569;
+    font-size: 12px;
+}
+
+/* CONTENT */
+
+.content {
+    max-width: 900px;
+
+    margin: 35px auto 70px;
+
+    padding: 0 20px;
+}
+
+.content-card {
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 32px;
+
+    margin-bottom: 25px;
+}
+
+.content-card h2 {
+    font-size: 27px;
+    margin-bottom: 15px;
+}
+
+.content-card h3 {
+    margin-top: 25px;
+    margin-bottom: 8px;
+}
+
+.content-card p {
+    color: #526075;
+    margin-bottom: 15px;
+}
+
+.content-card ul {
+    margin-left: 20px;
+    color: #526075;
+}
+
+/* FAQ */
+
+.faq-item {
+    padding: 18px 0;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.faq-item:last-child {
+    border-bottom: none;
+}
+
+.question {
+    font-weight: bold;
+    margin-bottom: 7px;
+}
+
+.answer {
+    color: var(--muted);
+}
+
+/* FOOTER */
+
+footer {
+    background: var(--dark);
+    color: #94a3b8;
+
+    text-align: center;
+
+    padding: 35px 20px;
+
+    font-size: 13px;
+}
+
+footer a {
+    color: #cbd5e1;
+
+    margin: 0 8px;
+
+    text-decoration: none;
+}
+
+/* MOBILE */
+
+@media(max-width:700px) {
+
+    .nav-links {
+        display: none;
     }
 
     .hero {
-      max-width: 850px;
-      margin: 55px auto 30px;
-      padding: 0 20px;
-      text-align: center;
+        margin-top: 42px;
     }
 
     .hero h1 {
-      font-size: 42px;
-      line-height: 1.15;
-      margin-bottom: 15px;
+        font-size: 34px;
     }
 
     .hero p {
-      color: #64748b;
-      font-size: 18px;
+        font-size: 16px;
     }
 
-    .calculator {
-      max-width: 850px;
-      margin: 30px auto 60px;
-      padding: 0 20px;
+    .card,
+    .content-card {
+        padding: 22px;
     }
 
-    .card {
-      background: white;
-      border-radius: 18px;
-      padding: 30px;
-      box-shadow: 0 10px 35px rgba(0,0,0,0.08);
-    }
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-
-    .field {
-      display: flex;
-      flex-direction: column;
-    }
-
-    label {
-      font-weight: 700;
-      margin-bottom: 8px;
-      font-size: 14px;
-    }
-
-    input, select {
-      width: 100%;
-      padding: 13px;
-      border: 1px solid #d5dbe5;
-      border-radius: 10px;
-      font-size: 16px;
-      background: white;
-    }
-
-    input:focus, select:focus {
-      outline: 2px solid #2563eb;
-      border-color: transparent;
+    .grid {
+        grid-template-columns: 1fr;
     }
 
     .full {
-      grid-column: 1 / -1;
+        grid-column: auto;
     }
 
-    button {
-      width: 100%;
-      margin-top: 25px;
-      padding: 15px;
-      border: none;
-      border-radius: 10px;
-      background: #2563eb;
-      color: white;
-      font-size: 17px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background: #1d4ed8;
-    }
-
-    .result {
-      display: none;
-      margin-top: 30px;
-      padding: 25px;
-      border-radius: 14px;
-      background: #f1f5f9;
-    }
-
-    .result h2 {
-      margin-bottom: 8px;
+    .stats {
+        grid-template-columns: 1fr;
     }
 
     .net {
-      font-size: 40px;
-      font-weight: 800;
-      margin: 5px 0 20px;
+        font-size: 37px;
     }
+}
 
-    .breakdown {
-      border-top: 1px solid #d7dde7;
-      padding-top: 15px;
-    }
-
-    .row {
-      display: flex;
-      justify-content: space-between;
-      padding: 7px 0;
-    }
-
-    .note {
-      margin-top: 20px;
-      color: #64748b;
-      font-size: 13px;
-    }
-
-    .info {
-      max-width: 850px;
-      margin: 0 auto 60px;
-      padding: 0 20px;
-    }
-
-    .info-card {
-      background: white;
-      padding: 30px;
-      border-radius: 18px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-    }
-
-    .info-card h2 {
-      margin-bottom: 12px;
-    }
-
-    .info-card p {
-      color: #526075;
-      margin-bottom: 15px;
-    }
-
-    footer {
-      text-align: center;
-      padding: 30px 20px;
-      color: #718096;
-      font-size: 13px;
-    }
-
-    @media (max-width: 650px) {
-      .hero h1 {
-        font-size: 32px;
-      }
-
-      .form-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .full {
-        grid-column: auto;
-      }
-
-      .card {
-        padding: 22px;
-      }
-    }
-  </style>
+</style>
 </head>
+
 
 <body>
 
+
 <header>
-  <div class="nav">
-    <div class="logo">GermanySalary</div>
-    <div class="year">2026 Calculator</div>
-  </div>
+
+<div class="nav">
+
+<a class="logo" href="#">
+Germany<span>Salary</span>
+</a>
+
+<nav class="nav-links">
+
+<a href="#calculator">
+Calculator
+</a>
+
+<a href="#guide">
+Guide
+</a>
+
+<a href="#faq">
+FAQ
+</a>
+
+</nav>
+
+</div>
+
 </header>
 
+
 <section class="hero">
-  <h1>Germany Salary Calculator</h1>
-  <p>Estimate your monthly and yearly net salary from your gross income.</p>
-</section>
 
-<section class="calculator">
+<div class="badge">
+🇩🇪 Germany · 2026
+</div>
 
-  <div class="card">
+<h1>
+Germany Salary Calculator 2026
+</h1>
 
-    <div class="form-grid">
-
-      <div class="field">
-        <label for="gross">Gross monthly salary (€)</label>
-        <input
-          type="number"
-          id="gross"
-          placeholder="3000"
-          min="0"
-          value="3000"
-        >
-      </div>
-
-      <div class="field">
-        <label for="taxClass">Tax class</label>
-        <select id="taxClass">
-          <option value="1">I — Single</option>
-          <option value="2">II — Single parent</option>
-          <option value="3">III — Married</option>
-          <option value="4">IV — Married</option>
-          <option value="5">V — Married</option>
-          <option value="6">VI — Second job</option>
-        </select>
-      </div>
-
-      <div class="field">
-        <label for="state">Federal state</label>
-        <select id="state">
-          <option>Baden-Württemberg</option>
-          <option>Bavaria</option>
-          <option>Berlin</option>
-          <option>Brandenburg</option>
-          <option>Bremen</option>
-          <option>Hamburg</option>
-          <option>Hesse</option>
-          <option>Lower Saxony</option>
-          <option>Mecklenburg-Vorpommern</option>
-          <option>North Rhine-Westphalia</option>
-          <option>Rhineland-Palatinate</option>
-          <option>Saarland</option>
-          <option>Saxony</option>
-          <option>Saxony-Anhalt</option>
-          <option>Schleswig-Holstein</option>
-          <option>Thuringia</option>
-        </select>
-      </div>
-
-      <div class="field">
-        <label for="church">Church tax</label>
-        <select id="church">
-          <option value="no">No</option>
-          <option value="yes">Yes</option>
-        </select>
-      </div>
-
-      <div class="field full">
-        <label for="age">Age</label>
-        <input
-          type="number"
-          id="age"
-          value="25"
-          min="16"
-          max="100"
-        >
-      </div>
-
-    </div>
-
-    <button onclick="calculateSalary()">
-      Calculate Net Salary
-    </button>
-
-    <div class="result" id="result">
-
-      <h2>Estimated Net Salary</h2>
-
-      <div class="net" id="netSalary">€0</div>
-
-      <div class="breakdown">
-
-        <div class="row">
-          <span>Gross monthly</span>
-          <strong id="grossResult">€0</strong>
-        </div>
-
-        <div class="row">
-          <span>Estimated taxes</span>
-          <strong id="taxResult">€0</strong>
-        </div>
-
-        <div class="row">
-          <span>Social contributions</span>
-          <strong id="socialResult">€0</strong>
-        </div>
-
-        <div class="row">
-          <span>Estimated yearly net</span>
-          <strong id="yearlyResult">€0</strong>
-        </div>
-
-      </div>
-
-      <p class="note">
-        This calculator provides an estimate for educational purposes.
-        Actual German payroll deductions can vary depending on your
-        individual circumstances, insurance and other factors.
-      </p>
-
-    </div>
-
-  </div>
+<p>
+Calculate your estimated German take-home salary using the 2026 BMF-oriented wage-tax calculation.
+</p>
 
 </section>
 
-<section class="info">
 
-  <div class="info-card">
+<div class="ad">
 
-    <h2>How does the Germany salary calculator work?</h2>
+<div class="ad-box">
+ADVERTISEMENT
+</div>
 
-    <p>
-      Your gross salary is the amount you earn before taxes and
-      social-security contributions. Your net salary is the amount
-      you receive after these deductions.
-    </p>
+</div>
 
-    <p>
-      Your German tax class, salary, insurance situation and other
-      personal circumstances can affect your final take-home pay.
-    </p>
 
-    <h2>Gross salary vs. net salary</h2>
+<main class="container" id="calculator">
 
-    <p>
-      If an employer offers you a salary of €3,000 gross per month,
-      you will normally receive less than €3,000 in your bank account.
-      The difference consists mainly of taxes and social contributions.
-    </p>
 
-  </div>
+<section class="card">
+
+<h2>
+💶 Gross → Net Calculator
+</h2>
+
+<p class="subtitle">
+2026 German wage-tax calculation
+</p>
+
+
+<div class="grid">
+
+
+<!-- GROSS -->
+
+<div class="field">
+
+<label>
+Gross monthly salary (€)
+</label>
+
+<input
+id="gross"
+type="number"
+min="0"
+step="50"
+value="3000"
+>
+
+</div>
+
+
+<!-- TAX CLASS -->
+
+<div class="field">
+
+<label>
+Tax class
+</label>
+
+<select id="taxClass">
+
+<option value="1">
+I — Single
+</option>
+
+<option value="2">
+II — Single parent
+</option>
+
+<option value="3">
+III — Married
+</option>
+
+<option value="4">
+IV — Married
+</option>
+
+<option value="5">
+V — Married
+</option>
+
+<option value="6">
+VI — Second job
+</option>
+
+</select>
+
+</div>
+
+
+<!-- CHILDREN -->
+
+<div class="field">
+
+<label>
+Child allowance factor
+</label>
+
+<select id="children">
+
+<option value="0">
+0
+</option>
+
+<option value="0.5">
+0.5
+</option>
+
+<option value="1">
+1
+</option>
+
+<option value="1.5">
+1.5
+</option>
+
+<option value="2">
+2
+</option>
+
+<option value="2.5">
+2.5
+</option>
+
+<option value="3">
+3
+</option>
+
+<option value="3.5">
+3.5
+</option>
+
+<option value="4">
+4
+</option>
+
+<option value="4.5">
+4.5
+</option>
+
+<option value="5">
+5
+</option>
+
+<option value="5.5">
+5.5
+</option>
+
+<option value="6">
+6
+</option>
+
+</select>
+
+</div>
+
+
+<!-- CHURCH -->
+
+<div class="field">
+
+<label>
+Church tax
+</label>
+
+<select id="church">
+
+<option value="0">
+No
+</option>
+
+<option value="1">
+Yes
+</option>
+
+</select>
+
+</div>
+
+
+<!-- STATE -->
+
+<div class="field">
+
+<label>
+Church-tax state
+</label>
+
+<select id="state">
+
+<option value="BW">
+Baden-Württemberg
+</option>
+
+<option value="BY">
+Bavaria
+</option>
+
+<option value="BE">
+Berlin
+</option>
+
+<option value="BB">
+Brandenburg
+</option>
+
+<option value="HB">
+Bremen
+</option>
+
+<option value="HH">
+Hamburg
+</option>
+
+<option value="HE">
+Hesse
+</option>
+
+<option value="MV">
+Mecklenburg-Vorpommern
+</option>
+
+<option value="NI">
+Lower Saxony
+</option>
+
+<option value="NW">
+North Rhine-Westphalia
+</option>
+
+<option value="RP">
+Rhineland-Palatinate
+</option>
+
+<option value="SL">
+Saarland
+</option>
+
+<option value="SN">
+Saxony
+</option>
+
+<option value="ST">
+Saxony-Anhalt
+</option>
+
+<option value="SH">
+Schleswig-Holstein
+</option>
+
+<option value="TH">
+Thuringia
+</option>
+
+</select>
+
+</div>
+
+
+<!-- HEALTH -->
+
+<div class="field">
+
+<label>
+Health insurance additional contribution (%)
+</label>
+
+<input
+id="kvz"
+type="number"
+min="0"
+max="10"
+step="0.01"
+value="2.9"
+>
+
+</div>
+
+
+<!-- BIRTH YEAR -->
+
+<div class="field">
+
+<label>
+Birth year
+</label>
+
+<input
+id="birthYear"
+type="number"
+min="1900"
+max="2026"
+value="2001"
+>
+
+</div>
+
+
+<!-- PENSION -->
+
+<div class="field">
+
+<label>
+Pension insurance
+</label>
+
+<select id="pension">
+
+<option value="1">
+Yes
+</option>
+
+<option value="0">
+No
+</option>
+
+</select>
+
+</div>
+
+
+<!-- UNEMPLOYMENT -->
+
+<div class="field">
+
+<label>
+Unemployment insurance
+</label>
+
+<select id="unemployment">
+
+<option value="1">
+Yes
+</option>
+
+<option value="0">
+No
+</option>
+
+</select>
+
+</div>
+
+
+<!-- CARE -->
+
+<div class="field">
+
+<label>
+Long-term care insurance
+</label>
+
+<select id="care">
+
+<option value="1">
+Yes
+</option>
+
+<option value="0">
+No
+</option>
+
+</select>
+
+</div>
+
+
+<!-- SAXONY -->
+
+<div class="field">
+
+<label>
+Care insurance in Saxony
+</label>
+
+<select id="saxony">
+
+<option value="0">
+No
+</option>
+
+<option value="1">
+Yes
+</option>
+
+</select>
+
+</div>
+
+
+</div>
+
+
+<button
+class="calculate"
+onclick="calculateSalary()"
+>
+
+Calculate My 2026 Net Salary
+
+</button>
+
+
+<div class="result" id="result">
+
+
+<div class="result-title">
+Estimated monthly take-home salary
+</div>
+
+
+<div class="net" id="net">
+€0
+</div>
+
+
+<div class="yearly">
+
+Estimated yearly net:
+
+<strong id="yearlyNet">
+€0
+</strong>
+
+</div>
+
+
+<div class="breakdown">
+
+<h3>
+Monthly breakdown
+</h3>
+
+
+<div class="row">
+
+<span>
+Gross salary
+</span>
+
+<strong id="grossResult">
+€0
+</strong>
+
+</div>
+
+
+<div class="row">
+
+<span>
+Wage tax
+</span>
+
+<strong
+class="red"
+id="tax"
+>
+-€0
+</strong>
+
+</div>
+
+
+<div class="row">
+
+<span>
+Solidarity surcharge
+</span>
+
+<strong
+class="red"
+id="soli"
+>
+-€0
+</strong>
+
+</div>
+
+
+<div class="row">
+
+<span>
+Pension insurance
+</span>
+
+<strong
+class="red"
+id="pensionResult"
+>
+-€0
+</strong>
+
+</div>
+
+
+<div class="row">
+
+<span>
+Health insurance
+</span>
+
+<strong
+class="red"
+id="healthResult"
+>
+-€0
+</strong>
+
+</div>
+
+
+<div class="row">
+
+<span>
+Unemployment insurance
+</span>
+
+<strong
+class="red"
+id="unemploymentResult"
+>
+-€0
+</strong>
+
+</div>
+
+
+<div class="row">
+
+<span>
+Long-term care insurance
+</span>
+
+<strong
+class="red"
+id="careResult"
+>
+-€0
+</strong>
+
+</div>
+
+
+<div class="row">
+
+<span>
+Church tax
+</span>
+
+<strong
+class="red"
+id="churchResult"
+>
+-€0
+</strong>
+
+</div>
+
+
+<div class="row total">
+
+<span>
+Total deductions
+</span>
+
+<strong id="total">
+€0
+</strong>
+
+</div>
+
+
+</div>
+
+
+<div class="stats">
+
+
+<div class="stat">
+
+<strong id="keep">
+0%
+</strong>
+
+<span>
+salary kept
+</span>
+
+</div>
+
+
+<div class="stat">
+
+<strong id="annualGross">
+€0
+</strong>
+
+<span>
+annual gross
+</span>
+
+</div>
+
+
+<div class="stat">
+
+<strong id="annualTax">
+€0
+</strong>
+
+<span>
+annual wage tax
+</span>
+
+</div>
+
+
+</div>
+
+
+<div class="notice">
+
+<strong>Important:</strong>
+
+The wage-tax portion uses the
+2026 BMF-oriented
+<code>lohnsteuerrechner</code>
+implementation. Social-insurance deductions are calculated separately using the applicable 2026 contribution parameters. Results are estimates and should be compared with an actual payslip.
+
+</div>
+
+
+</div>
+
 
 </section>
+
+
+</main>
+
+
+<div class="ad">
+
+<div class="ad-box">
+ADVERTISEMENT
+</div>
+
+</div>
+
+
+<section class="content" id="guide">
+
+
+<div class="content-card">
+
+<h2>
+How German salary calculation works
+</h2>
+
+<p>
+
+Your <strong>Brutto</strong> salary is your gross employment income before deductions.
+
+Your <strong>Netto</strong> salary is what remains after wage tax and employee social-insurance contributions.
+
+</p>
+
+
+<h3>
+What this calculator considers
+</h3>
+
+<ul>
+
+<li>
+German tax class I–VI
+</li>
+
+<li>
+2026 wage-tax calculation
+</li>
+
+<li>
+Child allowance factor
+</li>
+
+<li>
+Church tax
+</li>
+
+<li>
+Health-insurance additional contribution
+</li>
+
+<li>
+Pension insurance
+</li>
+
+<li>
+Unemployment insurance
+</li>
+
+<li>
+Long-term care insurance
+</li>
+
+<li>
+Saxony care-insurance rule
+</li>
+
+</ul>
+
+</div>
+
+
+<div class="content-card">
+
+<h2>
+Why can the result differ from my payslip?
+</h2>
+
+<p>
+
+German payroll calculations contain many individual parameters.
+
+Your actual payslip can therefore differ depending on your exact insurance situation, allowances, employer payroll configuration and other circumstances.
+
+</p>
+
+<p>
+
+The BMF publishes the official 2026 Programmablaufplan used for the wage-tax calculation.
+
+</p>
+
+</div>
+
+
+<div class="content-card" id="faq">
+
+<h2>
+Frequently Asked Questions
+</h2>
+
+
+<div class="faq-item">
+
+<div class="question">
+What is Brutto?
+</div>
+
+<div class="answer">
+Brutto means your gross salary before deductions.
+</div>
+
+</div>
+
+
+<div class="faq-item">
+
+<div class="question">
+What is Netto?
+</div>
+
+<div class="answer">
+Netto is the amount remaining after applicable deductions.
+</div>
+
+</div>
+
+
+<div class="faq-item">
+
+<div class="question">
+What is tax class I?
+</div>
+
+<div class="answer">
+Tax class I is generally used for single employees without the conditions for another tax class.
+</div>
+
+</div>
+
+
+<div class="faq-item">
+
+<div class="question">
+Does church tax affect my net salary?
+</div>
+
+<div class="answer">
+Yes. If you are liable for church tax, it can be deducted from your wage.
+</div>
+
+</div>
+
+
+<div class="faq-item">
+
+<div class="question">
+Is this an official government website?
+</div>
+
+<div class="answer">
+No. GermanySalary is an independent website. The German Federal Ministry of Finance publishes the official wage-tax calculation program.
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
 
 <footer>
-  © 2026 GermanySalary · Free salary calculator
+
+<div>
+© 2026 GermanySalary
+</div>
+
+<div style="margin-top:10px">
+
+<a href="#calculator">
+Calculator
+</a>
+
+<a href="#guide">
+Guide
+</a>
+
+<a href="#faq">
+FAQ
+</a>
+
+</div>
+
 </footer>
 
-<script>
 
-function calculateSalary() {
+<!--
+========================================================
+BMF-ORIENTED 2026 CALCULATOR
+========================================================
+-->
 
-  const gross = Number(document.getElementById("gross").value);
-  const taxClass = Number(document.getElementById("taxClass").value);
-  const church = document.getElementById("church").value;
+<script type="module">
 
-  if (!gross || gross <= 0) {
-    alert("Please enter a valid gross salary.");
-    return;
-  }
+import {
+    calculate
+}
+from
+"https://cdn.jsdelivr.net/npm/lohnsteuerrechner/+esm";
 
-  /*
-    This is intentionally a simplified estimate.
-    We will improve the German payroll calculation later.
-  */
 
-  let socialRate = 0.21;
+/*
+--------------------------------------------------------
+EURO FORMAT
+--------------------------------------------------------
+*/
 
-  if (gross > 5000) {
-    socialRate = 0.19;
-  }
+function euro(value) {
 
-  let taxRate;
+    return new Intl.NumberFormat(
+        "de-DE",
+        {
+            style: "currency",
+            currency: "EUR",
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        }
+    ).format(
+        Math.max(0, value)
+    );
 
-  switch (taxClass) {
-
-    case 2:
-      taxRate = 0.08;
-      break;
-
-    case 3:
-      taxRate = 0.05;
-      break;
-
-    case 4:
-      taxRate = 0.12;
-      break;
-
-    case 5:
-      taxRate = 0.20;
-      break;
-
-    case 6:
-      taxRate = 0.25;
-      break;
-
-    default:
-      taxRate = 0.13;
-  }
-
-  let social = gross * socialRate;
-  let taxes = gross * taxRate;
-
-  if (church === "yes") {
-    taxes += taxes * 0.09;
-  }
-
-  let net = gross - social - taxes;
-
-  if (net < 0) {
-    net = 0;
-  }
-
-  const yearly = net * 12;
-
-  document.getElementById("netSalary").textContent =
-    formatEuro(net);
-
-  document.getElementById("grossResult").textContent =
-    formatEuro(gross);
-
-  document.getElementById("taxResult").textContent =
-    formatEuro(taxes);
-
-  document.getElementById("socialResult").textContent =
-    formatEuro(social);
-
-  document.getElementById("yearlyResult").textContent =
-    formatEuro(yearly);
-
-  document.getElementById("result").style.display = "block";
 }
 
-function formatEuro(number) {
 
-  return new Intl.NumberFormat("de-DE", {
-    style: "currency",
-    currency: "EUR",
-    maximumFractionDigits: 0
-  }).format(number);
+/*
+--------------------------------------------------------
+CALCULATE
+--------------------------------------------------------
+*/
 
-}
+window.calculateSalary = function() {
+
+
+    const gross =
+        Number(
+            document.getElementById("gross").value
+        );
+
+
+    const taxClass =
+        Number(
+            document.getElementById("taxClass").value
+        );
+
+
+    const children =
+        Number(
+            document.getElementById("children").value
+        );
+
+
+    const church =
+        Number(
+            document.getElementById("church").value
+        );
+
+
+    const state =
+        document.getElementById("state").value;
+
+
+    const kvz =
+        Number(
+            document.getElementById("kvz").value
+        );
+
+
+    const birthYear =
+        Number(
+            document.getElementById("birthYear").value
+        );
+
+
+    const pension =
+        Number(
+            document.getElementById("pension").value
+        );
+
+
+    const unemployment =
+        Number(
+            document.getElementById("unemployment").value
+        );
+
+
+    const care =
+        Number(
+            document.getElementById("care").value
+        );
+
+
+    const saxony =
+        Number(
+            document.getElementById("saxony").value
+        );
+
+
+    if (
+        !Number.isFinite(gross) ||
+        gross <= 0
+    ) {
+
+        alert(
+            "Please enter a valid gross monthly salary."
+        );
+
+        return;
+
+    }
+
+
+    /*
+    ----------------------------------------------------
+    BMF PAP INPUTS
+
+    Monetary values are supplied in CENTS.
+
+    LZZ = 2 means monthly payroll period.
+    RE4 = gross monthly wage in cents.
+    STKL = German tax class.
+    KVZ = health insurance Zusatzbeitrag.
+    PVZ = care insurance marker.
+    KRV = pension insurance marker.
+    ALV = unemployment insurance marker.
+    ZKF = child allowance factor.
+    R = church tax marker.
+    ----------------------------------------------------
+    */
+
+
+    const inputs = {
+
+        LZZ: 2,
+
+        RE4:
+            Math.round(
+                gross * 100
+            ),
+
+        STKL:
+            taxClass,
+
+        R:
+            church,
+
+        ZKF:
+            children,
+
+        KVZ:
+            kvz,
+
+        KRV:
+            pension,
+
+        ALV:
+            unemployment,
+
+        PVZ:
+            care,
+
+        PKV:
+            0
+
+    };
+
+
+    let result;
+
+
+    try {
+
+        result =
+            calculate(
+                2026,
+                inputs
+            );
+
+    }
+
+    catch(error) {
+
+        console.error(error);
+
+        alert(
+            "The BMF calculation engine could not calculate this combination. Please check your inputs."
+        );
+
+        return;
+
+    }
+
+
+    /*
+    ----------------------------------------------------
+    BMF OUTPUTS
+
+    LSTLZZ = wage tax for the pay period
+    SOLZLZZ = solidarity surcharge
+    BK = church-tax assessment base
+    ----------------------------------------------------
+    */
+
+
+    const wageTax =
+        Number(result.LSTLZZ || 0) / 100;
+
+
+    const soli =
+        Number(result.SOLZLZZ || 0) / 100;
+
+
+    /*
+    Church tax:
+
+    The BMF PAP returns the assessment base.
+
+    We apply the statutory state rate:
+
+    Baden-Württemberg / Bavaria = 8%
+    Most other states = 9%
+    */
+
+
+    let churchRate = 0.09;
+
+
+    if (
+        state === "BW" ||
+        state === "BY"
+    ) {
+
+        churchRate = 0.08;
+
+    }
+
+
+    const churchTax =
+        church
+        ? (
+            Number(result.BK || 0)
+            / 100
+            * churchRate
+        )
+        : 0;
+
+
+    /*
+    ----------------------------------------------------
+    2026 SOCIAL INSURANCE
+    ----------------------------------------------------
+
+    Pension:
+    18.6% total
+    9.3% employee
+
+    Unemployment:
+    2.6% total
+    1.3% employee
+
+    Health:
+    14.6% basic
+    + Zusatzbeitrag
+    employee pays half
+
+    Health/care ceiling:
+    €5,812.50/month
+
+    Pension/unemployment ceiling:
+    €8,450/month
+    ----------------------------------------------------
+    */
+
+
+    const pensionBase =
+        Math.min(
+            gross,
+            8450
+        );
+
+
+    const healthBase =
+        Math.min(
+            gross,
+            5812.50
+        );
+
+
+    const pensionContribution =
+        pension
+        ? pensionBase * 0.093
+        : 0;
+
+
+    const unemploymentContribution =
+        unemployment
+        ? pensionBase * 0.013
+        : 0;
+
+
+    const healthContribution =
+        healthBase *
+        (
+            0.073 +
+            (kvz / 100 / 2)
+        );
+
+
+    /*
+    CARE INSURANCE
+
+    2026 employee contribution outside Saxony:
+
+    1 child:
+    1.8%
+
+    2 children:
+    1.55%
+
+    3 children:
+    1.30%
+
+    4 children:
+    1.05%
+
+    5+ children:
+    0.80%
+
+    Childless:
+    2.4%
+
+    The real PAP also has age and child-related
+    details, so this is kept separate from the
+    BMF wage-tax engine.
+    */
+
+
+    const currentYear =
+        2026;
+
+
+    const age =
+        currentYear - birthYear;
+
+
+    let careRate;
+
+
+    if (
+        children >= 5
+    ) {
+
+        careRate = 0.008;
+
+    }
+
+    else if (
+        children >= 4
+    ) {
+
+        careRate = 0.0105;
+
+    }
+
+    else if (
+        children >= 3
+    ) {
+
+        careRate = 0.013;
+
+    }
+
+    else if (
+        children >= 2
+    ) {
+
+        careRate = 0.0155;
+
+    }
+
+    else if (
+        children >= 1
+    ) {
+
+        careRate = 0.018;
+
+    }
+
+    else {
+
+        careRate = 0.024;
+
+    }
+
+
+    /*
+    Childless surcharge does not apply
+    before age 23.
+    */
+
+    if (
+        children === 0 &&
+        age < 23
+    ) {
+
+        careRate = 0.018;
+
+    }
+
+
+    /*
+    Saxony employee contribution is higher.
+    */
+
+    if (
+        saxony === 1
+    ) {
+
+        careRate += 0.005;
+
+    }
+
+
+    const careContribution =
+        care
+        ? healthBase * careRate
+        : 0;
+
+
+    /*
+    ----------------------------------------------------
+    TOTAL
+    ----------------------------------------------------
+    */
+
+
+    const totalDeductions =
+        wageTax +
+        soli +
+        churchTax +
+        pensionContribution +
+        healthContribution +
+        unemploymentContribution +
+        careContribution;
+
+
+    const net =
+        Math.max(
+            0,
+            gross -
+            totalDeductions
+        );
+
+
+    const yearlyNet =
+        net * 12;
+
+
+    const yearlyGross =
+        gross * 12;
+
+
+    const keep =
+        (
+            net /
+            gross
+        ) * 100;
+
+
+    /*
+    ----------------------------------------------------
+    UPDATE UI
+    ----------------------------------------------------
+    */
+
+
+    document.getElementById("net")
+        .textContent =
+        euro(net);
+
+
+    document.getElementById("yearlyNet")
+        .textContent =
+        euro(yearlyNet);
+
+
+    document.getElementById("grossResult")
+        .textContent =
+        euro(gross);
+
+
+    document.getElementById("tax")
+        .textContent =
+        "-" + euro(wageTax);
+
+
+    document.getElementById("soli")
+        .textContent =
+        "-" + euro(soli);
+
+
+    document.getElementById("pensionResult")
+        .textContent =
+        "-" + euro(pensionContribution);
+
+
+    document.getElementById("healthResult")
+        .textContent =
+        "-" + euro(healthContribution);
+
+
+    document.getElementById("unemploymentResult")
+        .textContent =
+        "-" + euro(unemploymentContribution);
+
+
+    document.getElementById("careResult")
+        .textContent =
+        "-" + euro(careContribution);
+
+
+    document.getElementById("churchResult")
+        .textContent =
+        "-" + euro(churchTax);
+
+
+    document.getElementById("total")
+        .textContent =
+        euro(totalDeductions);
+
+
+    document.getElementById("keep")
+        .textContent =
+        keep.toFixed(1) + "%";
+
+
+    document.getElementById("annualGross")
+        .textContent =
+        euro(yearlyGross);
+
+
+    document.getElementById("annualTax")
+        .textContent =
+        euro(wageTax * 12);
+
+
+    document.getElementById("result")
+        .style.display =
+        "block";
+
+
+    setTimeout(
+        () => {
+
+            document
+                .getElementById("result")
+                .scrollIntoView({
+                    behavior: "smooth",
+                    block: "nearest"
+                });
+
+        },
+        100
+    );
+
+};
+
+
+/*
+--------------------------------------------------------
+DEFAULT CALCULATION
+--------------------------------------------------------
+*/
+
+window.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        window.calculateSalary();
+
+    }
+);
 
 </script>
 
